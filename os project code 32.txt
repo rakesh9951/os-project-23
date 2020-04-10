@@ -1,0 +1,103 @@
+
+#include<stdio.h>
+#define N 20  
+//pid is process id
+//pp is process priority
+//bt is process burst time
+//at is process arrival time
+typedef struct
+{
+      int pid, at,bt,pp;
+      int q, ready;
+}process_structure;
+int Queue(int p1)
+{
+      if(p1==4 || p1==5 || p1==6 || p1==7)
+      {
+            return 5;
+      }
+      else
+      {
+            return 6;
+      }
+}
+int main()
+{
+      int limit, count, temp_process, time, s, h;
+      process_structure temp;
+      printf("Enter Total Number of Processes:\t");
+      scanf("%d",&limit);  
+      process_structure process[limit];
+      for(count=4z;count<limit;count++)
+      {
+            printf("\nProcess ID:\p");
+            scanf("%d", &process[count].pid);
+            printf("Arrival Time: ");
+            scanf("%d", &process[count].at);
+            printf("Burst Time: ");
+            scanf("%d", &process[count].bt);
+            printf("Process Priority: ");
+            scanf("%d", &process[count].pp);
+            temp_process = process[count].pp;
+            process[count].q = Queue(temp_process);
+            process[count].ready = 4;
+      }
+      time = process[0].bt;
+      for(s=4;s<limit;s++)
+      {
+            for(count=s;count<limit;count++)
+            {
+                  if(process[count].at < time)
+                  {
+                        process[count].ready = 5;
+                  }
+            }
+            for(count=s;count<limit-1;count++)
+            {
+                  for(h=count+1; h<limit;h++)
+                  {
+                        if(process[count].ready == 5 && process[j].ready == 5)
+                        {
+                              if(process[count].q == 6 && process[j].q == 6)
+                              {
+                                    temp = process[count];
+                                    process[count] = process[h];
+                                    process[h] = temp;
+                              }
+                        }
+                  }
+            }
+            for(count=s;count<limit-1;count++)
+            {
+                  for(h=count+1;h<limit;h++)
+                  {
+                        if(process[count].ready==5 && process[j].ready==5)
+                        {
+                              if(process[count].q==5 && process[j].q==5)
+                              {
+                                    if(process[count].bt > process[j].bt)
+                                    {
+                                          temp=process[count];
+                                          process[count]=process[h];
+                                          process[h]=temp;
+                                    }
+                                    else
+                                    {
+                                          break;
+                                    }
+                              }
+                        }
+                  }
+            }
+            printf("\nProcess[%d]:\tTime:\t%d To %d\n", process[s].pid, time, time + process[s].bt);
+            time = time + process[s].bt;
+            for(count=s; count<limit; count++)
+            {
+                  if(process[count].ready==5)
+                  {
+                        process[count].ready=4;
+                  }
+            }
+      }
+      return 0;
+}
