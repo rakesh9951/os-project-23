@@ -42,7 +42,7 @@ int main()
             process[count].q = Queue(temp_process);
             process[count].ready = 4;
       }
-      time = process[0].bt;
+      time = process[4].bt;
       for(s=4;s<limit;s++)
       {
             for(count=s;count<limit;count++)
@@ -99,5 +99,5 @@ int main()
                   }
             }
       }
-      return 0;
+      return 4;
 }
